@@ -1,31 +1,30 @@
 <html>
 <head> 
-	<title> Cipher.login </title>
+	<title> Cipher.login </title> 
+	<SCRIPT TYPE="TEXT/JAVASCRIPT">
+		function validateform() 
+		{ 
+			var x=document.myform.fname.value;
+			if(x==null||x=="") 
+			{
+				alert("Username must be filled out");
+			}
+				else
+			{
+				alert("Hello"+x);
+			}
+		}
+	</SCRIPT>
 </head>
-	<body>
-    <p style="background-image: url('https://static.vecteezy.com/system/resources/thumbnails/013/405/175/small/modern-technology-background-photo.jpg');">
-	<center> <h3>CIPHER</h3> </center>
-	<form> 
-<center>
-	Roll number: <br> 
-		<input name="roll_no" type= "text" maxlength="10"> <br><br>
-
-	Name: <br> 
-		<input name="txtUser" type="text" maxlength="20"> <br><br>
-
-	Gender: <br> 
-		Male <input name="gender" type= "radio" value="Male">
-		Female <input name="gender" type= "radio" value="Female"> 
-		Others <input name="gender" type= "radio" value="Others"> <br><br>
-
-	Marks: <br> 
-		<input name="marks" type= "text" maxlength="3"> <br><br>
-
-	<button type="submit"> Submit </button>
-</center>
-	</body>
-	</form>
+		<BODY>
+		<FORM name="login" onsubmit="validateform()" method="post">
+		<PRE>
+		Username:<input type="text" name="uname"><br><br>
+		<input type="submit" value="submit">
+		</PRE>
+		</form>
+		</body>
 </html>
-  </body>
-<script src="script.js"></script>
+		
+	
   
