@@ -1,23 +1,26 @@
-<html> 
+<html>
 	<body>
 	<?php
 
 	$servername = "localhost";
 	$db_username = "root";
-	$password = "";
+	$db_password = "";
 	$dbname = "Cipher";
 	$username = $_POST["username"];
 	$email_id = $_POST["email_id"];
+	$password = $_POST["password"];
+	$gender   = $_POST["gender"];
+
 
 	// Create connection
-	$conn = new mysqli($servername, $db_username, $password, $dbname);
+	$conn = new mysqli($servername, $db_username, $db_password, $dbname);
 
 	// Check connection
 	if ($conn->connect_error) {
     	   die("Connection failed: " . $conn->connect_error);
 	}
 
-	$sql = "INSERT INTO sign_up (username, email_id, Password, Gender) VALUES ('$username', '$email_id', '$Password', '$Gender')";
+	$sql = "INSERT INTO sign_up (username,email_id,password,gender) VALUES ('$username', '$email_id', '$password', '$gender')";
 
 	if ($conn->query($sql) === TRUE) {
     	echo "New record created successfully";
