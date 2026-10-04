@@ -5,7 +5,7 @@
 	$servername = "localhost";
 	$db_username = "root";
 	$password = "";
-	$dbname = "testcipher";
+	$dbname = "Cipher";
 	$username = $_POST["username"];
 	$email_id = $_POST["email_id"];
 
@@ -17,7 +17,7 @@
     	   die("Connection failed: " . $conn->connect_error);
 	}
 
-	$sql = "INSERT INTO login (username,email_id) VALUES ('$username', '$email_id')";
+	$sql = "INSERT INTO sign_up (username, email_id, Password, Gender) VALUES ('$username', '$email_id', '$Password', '$Gender')";
 
 	if ($conn->query($sql) === TRUE) {
     	echo "New record created successfully";
