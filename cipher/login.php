@@ -1,29 +1,50 @@
+
 <?php
 
 $servername = "localhost";
 $db_username = "root";
 $db_password = "";
-$dbname = "Cipher";
+$dbname = "cipher";
 
-$username = $_POST["username"];
-$password = $_POST["password"];
-
-$conn = new mysqli($servername, $db_username, $db_password, $dbname);
+$conn = new mysqli(
+    $servername,
+    $db_username,
+    $db_password,
+    $dbname
+);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM sign_up WHERE username='$username' AND password='$password'";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$result = $conn->query($sql);
+    $username = $_POST["username"] ?? "";
+    $password = $_POST["password"] ?? "";
 
-if ($result->num_rows > 0) {
-    echo "Login successful! Welcome " . $username;
+    $sql = "SELECT * FROM sign_up
+            WHERE username = ? AND password = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $username, $password);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        echo "Login successful! Welcome " .
+             htmlspecialchars($username);
+    } else {
+        echo "Invalid username or password.";
+    }
+
+    $stmt->close();
+
 } else {
-    echo "Invalid username or password.";
+    echo "Please submit the login form first.";
 }
 
 $conn->close();
 
 ?>
+
